@@ -1,20 +1,19 @@
 #include "main.h"
-
 /**
- * main - Print holberton
+ * main - Entry point
  *
- * Return: Always (0)
- *
+ * Return: Always 0 (Success)
  */
-
 int main(void)
 {
-  char *c = "Holberton";
-  int i;
+	char *sh = "Holberton";
 
-  for(i = 0; i < 10; i++) {
-    _putchar(c[i]);
-  }
-  _putchar('\n');
-  return (0);
+	while (*sh)
+	{
+		_putchar(*sh);
+		sh++;
+	}
+	_putchar('\n');
+
+	return (0);
 }
