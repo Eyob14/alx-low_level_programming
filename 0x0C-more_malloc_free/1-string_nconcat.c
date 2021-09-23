@@ -1,42 +1,61 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 /**
-* string_nconcat - prints concatenate string;
-* @s1: input string.
-* @s2: input string.
-* @n: len s2 string for print.
-* Return: Nothing.
-*/
+ * _strlen - string len
+ * @s: string
+ *
+ * Return: int len
+ */
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i] != '\0')
+		i++;
+
+	return (i);
+}
+/**
+ * string_nconcat - concatenates string s1 with nth of s2
+ * @s1: string 1
+ * @s2: string 2
+ * @n: size to take from s2
+ *
+ * Return: poiter to new string
+ */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	unsigned int l1, i, e;
 	char *a;
+	unsigned int s1Len, s2Len;
+	unsigned int i, I;
+	char nul = '\0';
+	int tots;
 
 	if (s1 == NULL)
-		s1 = "";
-
+		s1 = &nul;
 	if (s2 == NULL)
-		s2 = "";
-	l1 = 0;
-	while (s1[l1])
-		l1++;
+		s2 = &nul;
 
-	a = malloc(sizeof(*a) * l1 + n + 1);
+	s1Len = _strlen(s1);
+	s2Len = _strlen(s2);
 
+	if (n >= s2Len)
+		tots = s2Len + s1Len;
+	else
+		tots = s1Len + n;
+
+	a = malloc(tots + 1);
 	if (a == NULL)
 		return (NULL);
 
-	for (i = 0, e = 0; i < (l1 + n); i++)
-	{
-		if (i < l1)
-		{
-			a[i] = s1[i];
-		}
-		else
-		{
-			a[i] = s2[e++];
-		}
-	}
-	a[i] = '\0';
+	i = 0, I = 0;
+	while (s1[i] != '\0')
+		a[I++] = s1[i++];
+	i = 0;
+	while (s2[i] != '\0' && n-- != 0)
+		a[I++] = s2[i++];
+	a[I] = '\0';
+
 	return (a);
 }
