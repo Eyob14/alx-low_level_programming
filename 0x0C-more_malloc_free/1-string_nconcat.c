@@ -1,49 +1,42 @@
 #include "main.h"
 #include <stdlib.h>
-
 /**
- * string_nconcat - Concatinate first string
- * and n chars from the second string.
- *
- * @s1: First string .
- * @s2: Second string.
- * @n: Numbers of chars to concatinate from the second string.
- * Return: Pointer to the new string.
- **/
-
+* string_nconcat - prints concatenate string;
+* @s1: input string.
+* @s2: input string.
+* @n: len s2 string for print.
+* Return: Nothing.
+*/
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *s;
-	unsigned int s1_length = 0, s2_length = 0, k = 0;
+	unsigned int l1, i, e;
+	char *a;
 
-	if (s1 != NULL)
-		for (; s1[s1_length]; s1_length++)
-		;
-	if (s2 != NULL)
-		for (; s2[s2_length]; s2_length++)
-		;
-	if (n >= s2_length)
-		s = malloc(sizeof(char) * (s1_length + s2_length + 1));
-	else
-	{
-		s = malloc(sizeof(char) * (s1_length + n + 1));
-		s2_length = n;
-	}
-	if (s == NULL)
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+	l1 = 0;
+	while (s1[l1])
+		l1++;
+
+	a = malloc(sizeof(*a) * l1 + n + 1);
+
+	if (a == NULL)
 		return (NULL);
 
-	while (k < s1_length)
+	for (i = 0, e = 0; i < (l1 + n); i++)
 	{
-		s[k] = s1[k];
-		k++;
+		if (i < l1)
+		{
+			a[i] = s1[i];
+		}
+		else
+		{
+			a[i] = s2[e++];
+		}
 	}
-
-	while (k < s1_length + s2_length)
-	{
-		s[k] = s2[k - s1_length];
-		k++;
-	}
-	s[k] = '\0';
-	return (s);
+	a[i] = '\0';
+	return (a);
 }
-
