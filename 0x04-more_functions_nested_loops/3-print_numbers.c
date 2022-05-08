@@ -1,8 +1,9 @@
 #include "main.h"
 
 /**
- * print_numbers: entry point
+ * print_numbers - Entry point of the function
  *
+ * Description: prints a character to the console
  *
  * Return: void
  */
